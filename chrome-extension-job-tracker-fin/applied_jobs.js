@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
         chrome.storage.local.get({ appliedJobs: [] }, (data) => {
             let appliedJobs = data.appliedJobs;
 
-            // Clear sections before reloading
             Object.values(sections).forEach(section => section.innerHTML = "");
 
             let jobCounts = { applied: 0, interviewing: 0, offerLetter: 0, rejected: 0 };
@@ -63,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         let fileExtension = fileType.includes("pdf") ? "pdf" : "docx";
                         let fileName = `Resume.${fileExtension}`;
                         console.log(`📥 Retrieved resume for ${fileType}:`);
-                        // Create a download link using a Blob
                         let blob = new Blob([new Uint8Array(resumeData)], { type: fileType });
                         let url = URL.createObjectURL(blob);
 
@@ -80,12 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
-            // Update count in tabs
             Object.keys(jobCounts).forEach(status => {
                 countElements[status].innerText = jobCounts[status];
             });
 
-            // Add event listeners for dropdowns
             document.querySelectorAll(".status-dropdown").forEach(dropdown => {
                 dropdown.addEventListener("change", function () {
                     let newStatus = this.value;
@@ -112,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // **SEARCH FUNCTIONALITY**
     searchInput.addEventListener("input", function () {
         let query = searchInput.value.toLowerCase();
         let activeSection = document.querySelector(".job-list.active");
@@ -126,18 +121,17 @@ document.addEventListener("DOMContentLoaded", function () {
             let companyName = job.getAttribute("data-company");
 
             if (jobTitle.includes(query) || companyName.includes(query)) {
-                job.style.display = "block"; // Show matching jobs
+                job.style.display = "block"; 
             } else {
-                job.style.display = "none"; // Hide non-matching jobs
+                job.style.display = "none"; 
             }
         });
 
         if (!query) {
-            jobs.forEach(job => job.style.display = "block"); // Show all jobs if search is cleared
+            jobs.forEach(job => job.style.display = "block"); 
         }
     });
 
-    // Tab Switching Logic
     document.querySelectorAll(".tab").forEach(tab => {
         tab.addEventListener("click", function () {
             let category = this.getAttribute("data-category");
@@ -152,5 +146,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    loadJobs(); // Initial load
+    loadJobs(); 
 });
