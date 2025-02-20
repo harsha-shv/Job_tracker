@@ -7,7 +7,6 @@
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
 
-        /* Tab Navigation */
         .tab-container {
             display: flex;
             border-bottom: 2px solid #ddd;
@@ -51,7 +50,6 @@
 <h1>Applied Jobs</h1>
 <input type="text" id="jobSearch" placeholder="Search by Job Title or Company" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
 
-<!-- Tab Navigation -->
 <div class="tab-container">
     <div class="tab active" data-category="applied">Applied (<span id="countApplied">0</span>)</div>
     <div class="tab" data-category="interviewing">Interviewing (<span id="countInterviewing">0</span>)</div>
@@ -59,7 +57,6 @@
     <div class="tab" data-category="rejected">Rejected (<span id="countRejected">0</span>)</div>
 </div>
 
-<!-- Job Listings -->
 <div id="appliedJobs" class="job-list active"></div>
 <div id="interviewingJobs" class="job-list"></div>
 <div id="offerLetterJobs" class="job-list"></div>
